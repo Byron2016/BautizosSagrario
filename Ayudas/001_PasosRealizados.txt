@@ -18,3 +18,28 @@
     2.3.- git log : informa los commints realizados hasta el momento.
     2.4.- git diff: Ver los cambios que se han hecho.
     2.5.- prueba a
+
+************************************************************************************************
+************************************************************************************************
+	MI PREGUNTA
+	http://serverfault.com/questions/803423/nginx-php-7-get-params-homestead
+	Nota: 
+		
+************************************************************************************************
+************************************************************************************************
+
+    1.- Abrir archivo "/etc/nginx/sites-available/domineoALlamar"
+        sudo nano /etc/nginx/sites-available/SagrarioBautizos.net
+    2.- Modificar
+
+        location / {
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        POR 
+
+        location / {
+            try_files $uri $uri/ /index.php?$query_string;
+            rewrite ^/(.*)$ /index.php?url=$1 last;
+        }
+    3.- Ejecutar: sudo /etc/init.d/nginx restart
