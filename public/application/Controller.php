@@ -46,6 +46,46 @@ abstract class Controller
         
     }
 
+    protected function getTexto($clave) 
+    {
+        //para evitar sqlinjection
+        //toma variable enviada por post, la filtra y la retorna
+        if(isset($_POST[$clave]) && !empty($_POST[$clave]))
+        {
+            $_POST[$clave] = htmlspecialchars($_POST[$clave], ENT_QUOTES);
+            return $_POST[$clave];
+        }
+        
+        return '';
+    }
+
+    protected function getInt($clave) 
+    {
+        //para evitar sqlinjection
+        //toma variable enviada or post y la filtra y retoran entero
+        if(isset($_POST[$clave]) && !empty($_POST[$clave]))
+        {
+            $_POST[$clave] = filter_input(INPUT_POST, $clave, FILTER_VALIDATE_INT);
+            return $_POST[$clave];
+        }
+        
+        return 0;
+    }
+
+    protected function redireccionar($ruta = FALSE)
+    {
+        if($ruta)
+        {
+            header('location:' . BASE_URL . $ruta);
+            exit();
+        }
+        else
+        {
+            header('location:' . BASE_URL);
+            exit();
+        }
+    }
+
     
     
 }
