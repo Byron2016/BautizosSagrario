@@ -1,0 +1,38 @@
+************************************************************************************************
+************************************************************************************************
+	Base de Datos
+	https://blog.unreal4u.com/2012/08/sobre-collation-y-charset-en-mysql/
+	Nota: 
+		
+************************************************************************************************
+************************************************************************************************
+
+1.- CREATE SCHEMA `ba_sag_2019` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci ;
+
+2.- Creamos la tabla:
+
+CREATE TABLE IF NOT EXISTS collationTests (
+    name01 CHAR(5) CHARSET utf8 COLLATE utf8_unicode_ci,
+    name02 CHAR(5) CHARSET latin1 COLLATE latin1_general_cs,
+    name03 CHAR(5) CHARSET ASCII COLLATE ascii_general_ci,
+    name04 CHAR(5) CHARSET utf8 COLLATE utf8_bin,
+    name05 CHAR(5) CHARSET latin1 COLLATE latin1_bin,
+    name06 CHAR(5) CHARSET ASCII COLLATE ascii_bin,
+) ENGINE=MyISAM;
+
+3.- Insertamos algunos datos:
+INSERT INTO collationTests VALUES ('Ñandú','Ñandú','Nandu','Ñandú','Ñandú','Nandu');
+
+CREATE TABLE `ba_sag_2019`.`posts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `titulo` VARCHAR(150) CHARACTER SET 'utf8' NOT NULL,
+  `cuerpo` TEXT(200) CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_spanish_ci;
+
+INSERT INTO `ba_sag_2019`.`posts` (`id`, `titulo`, `cuerpo`) VALUES (null,'titulo 1','cuerpo 1');
+INSERT INTO `ba_sag_2019`.`posts` (`id`, `titulo`, `cuerpo`) VALUES (null,'titulo 2','cuerpo 2');
+
+

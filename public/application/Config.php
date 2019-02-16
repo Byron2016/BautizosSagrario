@@ -15,7 +15,7 @@ define('APP_COMPANY', 'SagrarioBautizos.net');
     define('DB_PASS', 'secret');
     define('DB_NAME', 'ba_sag_2019');
     define('DB_CHAR', 'utf8');
-    define('DB_PORT', '33060');
+    define('DB_PORT', '3306');
 //sesiones
 define('SESSION_TIME', 10);
 //hash key
