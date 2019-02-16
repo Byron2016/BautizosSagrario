@@ -36,17 +36,17 @@ class postController extends Controller
                 exit;
             }
             //echo 'a1';
-            
+            /*
             $this->_post->insertarPost(
                     $this->getTexto('titulo'),
                     $this->getTexto('cuerpo')
                     );
-            /*
+            */
             $this->_post->insertarPost(
                     $this->getPostParam('titulo'),
                     $this->getPostParam('cuerpo')
                     );
-            */
+            
             $this->redireccionar('post');
         }  
     	$this->_view->renderizar('nuevo', 'post');
