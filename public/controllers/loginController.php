@@ -66,10 +66,10 @@ class loginController extends Controller
     
     public function index()
     {
-        //V7
+        //V7 - V8
         Session::set('autenticado', true);
         Session::set('level', 'usuario');
-        //Session::set('tiempo', time());
+        Session::set('tiempo', time()); //V8
         Session::set('var1', 'var1');
         Session::set('var2', 'var2');
         $this->redireccionar('login/mostrar');

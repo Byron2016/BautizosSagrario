@@ -1,14 +1,16 @@
 <?php
-//V7
+//V7 - V8
 class Session 
 {
     public static function init()
     {
+        //V7
         session_start();
     }
     
     public static function destroy($clave = FALSE)
     {
+        //V7
         if ($clave) 
         {
             if (is_array($clave)) {
@@ -30,6 +32,7 @@ class Session
     }
     public static function set($clave, $valor)
     {
+        //V7
         if (!empty($clave)) {
             $_SESSION[$clave] = $valor;
         }
@@ -37,6 +40,7 @@ class Session
     }
     public static function get($clave)
     {
+        //V7
         if (isset($_SESSION[$clave])) {
             return $_SESSION[$clave];
         }
@@ -44,12 +48,13 @@ class Session
 
     public static function acceso($level)
     {
+        //V7  - V8
         if(!Session::get('autenticado')){
             header('location:' . BASE_URL . 'error/access/5050');
             exit;
         }
         
-        //Session::tiempo();
+        Session::tiempo(); //V8
         
         if(Session::getLevel($level) > Session::getLevel(Session::get('level'))){
             header('location:' . BASE_URL . 'error/access/5050');
@@ -57,12 +62,14 @@ class Session
         }
     }
 
-    public static function accesoView($level){
+    public static function accesoView($level)
+    {
+        //V7 - V8
         
         if(!Session::get('autenticado')){
             return FALSE;
         }
-        //Session::tiempo();
+        Session::tiempo(); //V8
         if(Session::getLevel($level) > Session::getLevel(Session::get('level'))){
             return FALSE;
         }
@@ -72,6 +79,7 @@ class Session
 
     public static function getLevel($level)
     {
+        //V7
         //diferentes niveles de acceso en aplicación
         $rol['admin'] = 3;
         $rol['especial'] = 2;
@@ -83,16 +91,15 @@ class Session
             return $rol[$level];
         }
     }
-
-    /*
-
+    
     public static function accesoEstricto(array $level, $noAdmin = FALSE)
     {
+        //V8
         if(!Session::get('autenticado')){
             header('location:' . BASE_URL . 'error/access/5050');
             exit;
         }
-        Session::tiempo();
+        //Session::tiempo();
      
         if($noAdmin == false){
             if(Session::get('level') == 'admin'){
@@ -109,7 +116,10 @@ class Session
         header('location:' . BASE_URL . 'error/access/5050');
         
     }
-    public static function accesoViewEstricto(array $level, $noAdmin = FALSE){
+
+    public static function accesoViewEstricto(array $level, $noAdmin = FALSE)
+    {
+        //V8
         if(!Session::get('autenticado')){
             return false;
         }
@@ -128,8 +138,10 @@ class Session
         
         return false;
     }
-    public static function tiempo(){
-        
+
+    public static function tiempo()
+    {
+        //V8
         if((!Session::get('tiempo')) || (!defined('SESSION_TIME'))){
             throw new Exception('Error Session/Tiempo: No se ha definido el timpo de sesion');
         }
@@ -146,7 +158,5 @@ class Session
             Session::set('tiempo', time()); //reinicia tiempo de sesion y coloca el tiempo actual
         }
     }
-
-    */
     
 }

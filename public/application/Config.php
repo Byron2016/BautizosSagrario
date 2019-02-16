@@ -17,6 +17,6 @@ define('APP_COMPANY', 'SagrarioBautizos.net');
     define('DB_CHAR', 'utf8');
     define('DB_PORT', '3306');
 //sesiones
-define('SESSION_TIME', 10);
+define('SESSION_TIME', 10); //V8
 //hash key
 define('HASH_KEY', '5806aed8e2552'); //echo uniqid();exit; //5806aed8e2552
