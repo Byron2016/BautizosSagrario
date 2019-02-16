@@ -1,0 +1,20 @@
+************************************************************************************************
+************************************************************************************************
+	GIT
+	https://www.youtube.com/watch?v=jSJ8xhKtfP4&index=1&list=PLTd5ehIj0goMCnj6V5NdzSIHBgrIXckGU
+	Nota: 
+		GIT:    Es un sistema de control de versiones
+		GitHub: Es una plataforma en donde podemos guardar nuestros proyectos y usar GIT para administrar.
+************************************************************************************************
+************************************************************************************************
+1.- Crear repositorio de GIT
+    1.1.- Ingresar a la carpeta correspondiente
+    1.2.- git init
+2.- Llevar control cambios de un archivo
+    2.1.- git add index.html
+    2.2.- git status : informa el estado actual de los cambioss
+        2.2.1.- untracked me indica que EXISTE UN ARCHIVO QUE HA CAMBIADO pero no le he dicho que me registre ese cambio.
+        2.2.2.- changes to be commited: que son los cambios pendientes de ser registrados.
+    2.3.- git log : informa los commints realizados hasta el momento.
+    2.4.- git diff: Ver los cambios que se han hecho.
+    2.5.- 
