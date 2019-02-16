@@ -12,8 +12,10 @@ try {
 	require_once APP_PATH . 'View.php';
 	require_once APP_PATH . 'Register.php';
 	require_once APP_PATH . 'DataBase.php';
-	require_once APP_PATH . 'Session.php';
+	require_once APP_PATH . 'Session.php'; //v7
 	require_once APP_PATH . 'Hash.php';
+
+	Session::init(); //V7
     
     Bootstrap::run(new Request);
 

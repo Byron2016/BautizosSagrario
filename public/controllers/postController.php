@@ -16,7 +16,8 @@ class postController extends Controller
 	}
     public function nuevo()
     {
-        //Session::acceso('especial');
+        Session::acceso('especial'); //v7
+        //Session::acceso('usuario'); //v7
         //Session::accesoEstricto(array('usuario'));
     	$this->_view->titulo = 'Nuevo_post';
         $this->_view->setJs(array('nuevo'));
@@ -93,6 +94,7 @@ class postController extends Controller
     }
     public function eliminar($id)
     {
+        Session::acceso('admin'); //v7
         if(!$this->filtrarInt($id)){
             $this->redireccionar('post');
         }

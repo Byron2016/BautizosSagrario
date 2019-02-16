@@ -20,4 +20,6 @@
 
 <?php endif; ?>
 
-<p><a href="<?php BASE_URL; ?>post/nuevo">Agregar Post</a></p>
+<?php if(Session::accesoView('especial')): //V7 ?>
+	<p><a href="<?php BASE_URL; ?>post/nuevo">Agregar Post</a></p>
+<?php endif; //V7 ?>
