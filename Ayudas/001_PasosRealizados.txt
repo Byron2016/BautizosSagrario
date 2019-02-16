@@ -17,4 +17,4 @@
         2.2.2.- changes to be commited: que son los cambios pendientes de ser registrados.
     2.3.- git log : informa los commints realizados hasta el momento.
     2.4.- git diff: Ver los cambios que se han hecho.
-    2.5.- 
+    2.5.- prueba a
