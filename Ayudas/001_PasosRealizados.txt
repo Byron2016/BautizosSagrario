@@ -42,4 +42,17 @@
             try_files $uri $uri/ /index.php?$query_string;
             rewrite ^/(.*)$ /index.php?url=$1 last;
         }
-    3.- Ejecutar: sudo /etc/init.d/nginx restart
+    3.- Agregar ANTES de location ~ /\.ht { deny all; }
+        location ~ \.css {
+            add_header Content-Type text/css;
+        }
+
+        location ~ \.js {
+            add_header Content-Type text/javascript;
+        }
+
+        location ~ \.png {
+            add_header Content-Type image/png;
+        }
+
+    4.- Ejecutar: sudo /etc/init.d/nginx restart

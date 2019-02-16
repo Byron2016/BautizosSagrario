@@ -6,7 +6,7 @@ abstract class Controller
     
 	public function __construct()
 	{
-		//$this->_view = new View(new Request);
+		$this->_view = new View(new Request);
     }
     
     abstract public function index();
