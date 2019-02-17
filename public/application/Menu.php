@@ -1,5 +1,7 @@
 <?php 
-  
+
+//antes y V9
+
  		$menu = array(
 			array(
 				'id' => 'inicio',
@@ -17,7 +19,7 @@
 				'enlace' => BASE_URL . 'post'
 			)
         );
-        /*
+        
         if(Session::get('autenticado')){
             $menu[] = array(
                 'id' => 'login',
@@ -32,12 +34,13 @@
                 'enlace' => BASE_URL . 'login'//,
                 //'imagen' => 'icon-book'
             );
-            
+            /*
             $menu[] = array (
                 'id' => 'registro',
                 'titulo' => 'Registrar Usuario',
                 'enlace' => BASE_URL . 'registro'//,
                 //'imagen' => 'icon-book'
             );
-        }
-        */
+            */
+        };
+        

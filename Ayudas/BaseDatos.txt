@@ -35,4 +35,17 @@ COLLATE = utf8_spanish_ci;
 INSERT INTO `ba_sag_2019`.`posts` (`id`, `titulo`, `cuerpo`) VALUES (null,'titulo 1','cuerpo 1');
 INSERT INTO `ba_sag_2019`.`posts` (`id`, `titulo`, `cuerpo`) VALUES (null,'titulo 2','cuerpo 2');
 
+CREATE TABLE IF NOT EXISTS `ba_sag_2019`.`usuarios` (
+  `id` int(4) unsigned auto_increment primary key,
+  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `usuario` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `pass` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `role` enum("admin","especial","usuario"),
+  `estado` tinyint(4) DEFAULT NULL
+);
+
+describe `ba_sag_2019`.`usuarios`;
+
+insert into `ba_sag_2019`.`usuarios` values(null, 'nombre1', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'admin@yahoo.com', 'admin', 1);
 

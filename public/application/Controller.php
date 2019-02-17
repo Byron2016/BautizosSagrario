@@ -2,6 +2,7 @@
 
 abstract class Controller
 {
+    //anteriores - V9
     protected $_view;
     
 	public function __construct()
@@ -105,6 +106,35 @@ abstract class Controller
             return $_POST[$clave];
         }
     } 
+
+    protected function getSql($clave)
+    {
+        //V9
+        //limpia los stringtags
+        //sanitizar password
+        
+        if(isset($_POST[$clave]) && !empty($_POST[$clave])){
+            $_POST[$clave] = strip_tags($_POST[$clave]);
+            
+            if(!get_magic_quotes_gpc()){
+                //$_POST[$clave] = mysql_escape_string($_POST[$clave]);
+                
+            }
+            return trim($_POST[$clave]);
+        }
+    }
+    
+    protected function getAlphaNum($clave)
+    {
+        //V9
+        //solo acepta 0 9 a z y andrescords.
+        //sanitizar nombre usuario
+        if(isset($_POST[$clave]) && !empty($_POST[$clave])){
+            $_POST[$clave] = (string) preg_replace('/[^A-Z0-9_]/i', '', $_POST[$clave]);
+            return trim($_POST[$clave]);
+        }
+        
+    }
 
 
 
