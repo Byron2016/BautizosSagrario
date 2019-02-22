@@ -17,12 +17,14 @@ abstract class Controller
     {
         $modelo = $modelo . 'Model';
         $rutaModelo = ROOT . 'models' . DS . $modelo . '.php';
-        //echo $rutaModelo;
+        //echo '<br> dentro de Controller LoadModel El modelo levantado es: ' . $rutaModelo .' modelo ' . $modelo . '<br>';
         if (is_readable($rutaModelo))
         {
-            //echo 'si es legible';
+            //echo '<br> si es legible EL MODELO ' . $rutaModelo . '<br><br>';
             require_once $rutaModelo;
+            //echo '<br> 1<br><br>';
             $modelo = new $modelo;
+            //echo '<br> 2<br><br>';
             return $modelo;
         }
         else 
@@ -35,10 +37,12 @@ abstract class Controller
     protected function getLibrary($libreria,$dirInterno)
     {
         $rutaLibreria = ROOT . 'libs' . DS . $dirInterno . DS . $libreria . '.php';
+        //echo $rutaLibreria . "<br>";
         
         if (is_readable($rutaLibreria))
         {
             require_once $rutaLibreria;
+            //echo  " Si es legible <br>";
         }
         else 
         {
@@ -140,8 +144,10 @@ abstract class Controller
     public function validarEmail($email)
     {
         //V10
+        echo ' el email es: ' . $email . '<br>';
         if(!filter_var($email, FILTER_VALIDATE_EMAIL))
         {
+            echo 'Entro a el mail no es válido y retorna false';
                 return FALSE;
         }
         

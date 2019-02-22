@@ -50,5 +50,20 @@ describe `ba_sag_2019`.`usuarios`;
 
 //insert into `ba_sag_2019`.`usuarios` values(null, 'nombre1', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'admin@yahoo.com', 'admin', 1);
 
-insert into `ba_sag_2019`.`usuarios` values(null, 'nombre1', 'admin', 'd27fae2fb0995a49b66be9e97667c8a3 ', 'admin@yahoo.com', 'admin', 1, now());
+insert into `ba_sag_2019`.`usuarios` values(null, 'nombre1', 'admin', 'd27fae2fb0995a49b66be9e97667c8a3', 'admin@yahoo.com', 'admin', 1, now());
 
+Video 11
+
+CREATE TABLE IF NOT EXISTS `ba_sag_2019`.`usuarios` (
+  `id` int(4) unsigned auto_increment primary key,
+  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `usuario` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `pass` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `role` enum("admin","especial","usuario") NOT NULL,
+  `estado` tinyint(4) NOT NULL,
+  `fecha` DATETIME NOT NULL,
+  `codigo` int(10) UNSIGNED NOT NULL UNIQUE
+);
+
+describe `ba_sag_2019`.`usuarios`;

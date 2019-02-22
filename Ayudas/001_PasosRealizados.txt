@@ -89,3 +89,17 @@ https://www.youtube.com/watch?v=BO2lzbSNvy0&list=PLMVWdD5bcndrmfgQdYeZqTx-OP8SQi
         }
 
     4.- Ejecutar: sudo /etc/init.d/nginx restart
+
+    5.- Para Copiar
+        sudo cp /etc/nginx/sites-available/SagrarioBautizos.net /home/vagrant/code/SagrarioBautizos/Ayudas
+
+
+
+************************************************************************************************
+************************************************************************************************
+	PHPMAILER
+	https://alexwebdevelop.com/phpmailer-tutorial/
+	Nota: 
+		Mailhog: https://www.solucionex.com/blog/mailhog-para-testear-emails
+************************************************************************************************
+************************************************************************************************

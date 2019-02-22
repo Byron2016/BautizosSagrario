@@ -23,4 +23,5 @@ define('SESSION_TIME', 10); //V8
 //hash key
 define('HASH_KEY', '5806aed8e2552'); //V10 //echo uniqid();exit; //5806aed8e2552
 define('ROLL_DEFECTO', 'usuario'); //V10
-define('ESTADO_DEFECTO', '1'); //V10
+//define('ESTADO_DEFECTO', '1'); //V10
+define('ESTADO_DEFECTO', '0'); //V11
