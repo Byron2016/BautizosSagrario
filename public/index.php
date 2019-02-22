@@ -12,9 +12,11 @@ try {
 	require_once APP_PATH . 'View.php';
 	require_once APP_PATH . 'Register.php';
 	require_once APP_PATH . 'DataBase.php';
-	require_once APP_PATH . 'Session.php'; //v7
-	require_once APP_PATH . 'Hash.php';
+	require_once APP_PATH . 'Session.php'; //V7
+	require_once APP_PATH . 'Hash.php'; //V10
 
+	// echo Hash::getHash('md5','tete',HASH_KEY); //V10
+	// echo Hash::getHash('sha1','tete',HASH_KEY); //V10
 	Session::init(); //V7
     
     Bootstrap::run(new Request);

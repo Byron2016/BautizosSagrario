@@ -34,13 +34,13 @@
                 'enlace' => BASE_URL . 'login'//,
                 //'imagen' => 'icon-book'
             );
-            /*
+            //V10
             $menu[] = array (
                 'id' => 'registro',
                 'titulo' => 'Registrar Usuario',
                 'enlace' => BASE_URL . 'registro'//,
                 //'imagen' => 'icon-book'
             );
-            */
+            
         };
         

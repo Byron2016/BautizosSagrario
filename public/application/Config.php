@@ -1,4 +1,6 @@
 <?php 
+
+// anteriores - V10
    
 define('DEFAULT_CONTROLLER', 'index'); //controlador por defecto de la aplicación en caso de no enviarse en aplicación.
 define('DEFAULT_METODO', 'index');
@@ -19,4 +21,6 @@ define('APP_COMPANY', 'SagrarioBautizos.net');
 //sesiones
 define('SESSION_TIME', 10); //V8
 //hash key
-define('HASH_KEY', '5806aed8e2552'); //echo uniqid();exit; //5806aed8e2552
+define('HASH_KEY', '5806aed8e2552'); //V10 //echo uniqid();exit; //5806aed8e2552
+define('ROLL_DEFECTO', 'usuario'); //V10
+define('ESTADO_DEFECTO', '1'); //V10

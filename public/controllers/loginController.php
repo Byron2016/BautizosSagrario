@@ -16,12 +16,13 @@ class loginController extends Controller
     
     public function index()
     {
-        //V9
-        /*
+        //V9 - V10
+        
         if(Session::get('autenticado')){
+            //V10
             $this->redireccionar();
         }
-        */
+        
         $this->_view->titulo = 'Iniciar Sesion';
         
         if($this->getInt('enviar') == 1)

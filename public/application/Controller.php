@@ -2,7 +2,7 @@
 
 abstract class Controller
 {
-    //anteriores - V9
+    //anteriores - V9 - V10
     protected $_view;
     
 	public function __construct()
@@ -137,6 +137,16 @@ abstract class Controller
     }
 
 
+    public function validarEmail($email)
+    {
+        //V10
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+                return FALSE;
+        }
+        
+        return true;
+    }
 
     
     
