@@ -1,0 +1,25 @@
+<?php //ant - V12 ?>
+<h2> Últimos posts prueba </h2>
+<pre><?php //print_r($this->posts); ?></pre>
+
+<?php if(isset($this->posts) && count($this->posts)): ?>
+
+<table>
+    <?php for($i = 0; $i < count($this->posts); $i++): ?>
+    <tr>
+        <td>
+            <?php echo $this->posts[$i]['id']; ?>
+        </td>
+        <td>
+            <?php echo $this->posts[$i]['nombre']; ?>
+        </td>
+    </tr>
+    <?php endfor; ?>
+</table>
+
+<?php else: ?>
+<p><strong>No hay post!</strong></p>
+
+<?php endif; ?>
+
+<?php if(isset($this->paginacion)) echo $this->paginacion; ?>

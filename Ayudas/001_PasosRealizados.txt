@@ -92,6 +92,7 @@ https://www.youtube.com/watch?v=BO2lzbSNvy0&list=PLMVWdD5bcndrmfgQdYeZqTx-OP8SQi
 
     5.- Para Copiar
         sudo cp /etc/nginx/sites-available/SagrarioBautizos.net /home/vagrant/code/SagrarioBautizos/Ayudas
+        sudo cp /home/vagrant/code/SagrarioBautizos/Ayudas/SagrarioBautizos.net /etc/nginx/sites-available 
 
 
 

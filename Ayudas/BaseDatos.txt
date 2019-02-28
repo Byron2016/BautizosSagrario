@@ -67,3 +67,10 @@ CREATE TABLE IF NOT EXISTS `ba_sag_2019`.`usuarios` (
 );
 
 describe `ba_sag_2019`.`usuarios`;
+
+Video 12
+
+CREATE TABLE IF NOT EXISTS `ba_sag_2019`.`prueba` (
+  `id` int(4) unsigned auto_increment primary key,
+  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+);

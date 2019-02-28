@@ -1,5 +1,5 @@
 <?php
-
+//ant - V12
 class postController extends Controller
 {
 	private $_post; //esta variable usaremos para instanciar el modelo
@@ -7,10 +7,29 @@ class postController extends Controller
 		parent::__construct();
 		$this->_post = $this->loadModel('post');
 	}
-	public function index()
+	public function index($pagina = false)
 	{
+        //ant - V12
+        /*
+        for($i = 0; $i < 300; $i++){
+            $model = $this->loadModel('post');
+            $model->insertarPost('titulo' . $i, 'cuerpo' . $i);
+        }
+        */
+        if(!$this->filtrarInt($pagina)){
+            $pagina = false;
+        }
+        else {
+            $pagina = (int) $pagina;
+        }
+        $this->getLibrary('paginador','paginador'); //V12
+        $paginador = new Paginador(); //V12
+
+
 		$post = $this->loadModel('post');
-		$this->_view->posts = $post->getPosts();
+        //$this->_view->posts = $post->getPosts(); //antes V12
+        $this->_view->posts = $paginador->paginar($this->_post->getPosts(), $pagina); //V12
+        $this->_view->paginacion = $paginador->getView('prueba', 'post/index'); //V12 llama a la paginacion relacionada con la vista
 		$this->_view->titulo = 'portada';
 		$this->_view->renderizar('index', 'post');
 	}
@@ -105,5 +124,29 @@ class postController extends Controller
         
         $this->_post->eliminarPost($this->filtrarInt($id));
         $this->redireccionar('post');
+    }
+
+
+    public function prueba($pagina = false)
+    {
+        //V12
+        /*
+        for($i =0; $i <300; $i++){
+            $model = $this->loadModel('post');
+            $model->insertarPrueba('nombre ' . $i) ;
+        }
+        */
+        if(!$this->filtrarInt($pagina)){
+            $pagina = false;
+        }else {
+            $pagina = (int) $pagina;
+        }
+        $this->getLibrary('paginador','paginador');
+        $paginador = new Paginador();
+        
+        $this->_view->posts = $paginador->paginar($this->_post->getPrueba(), $pagina); //V12
+        $this->_view->paginacion = $paginador->getView('prueba', 'post/prueba'); //V12 llama a la paginacion relacionada con la vista
+		$this->_view->titulo = 'post';
+		$this->_view->renderizar('prueba', 'post');
     }
 }

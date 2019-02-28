@@ -1,3 +1,4 @@
+<?php //ant - V12 ?>
 <h2> Últimos posts </h2>
 <pre><?php //print_r($this->posts); ?></pre>
 
@@ -19,6 +20,8 @@
 	<p><strong>No hay post</strong></p>
 
 <?php endif; ?>
+
+<?php if(isset($this->paginacion)) echo $this->paginacion; ?>
 
 <?php 
 	// if(Session::accesoView('especial')): //V7 
