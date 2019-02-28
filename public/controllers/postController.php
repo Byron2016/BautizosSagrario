@@ -1,5 +1,5 @@
 <?php
-//ant - V12
+//ant - V12 - V13
 class postController extends Controller
 {
 	private $_post; //esta variable usaremos para instanciar el modelo
@@ -28,10 +28,17 @@ class postController extends Controller
 
 		$post = $this->loadModel('post');
         //$this->_view->posts = $post->getPosts(); //antes V12
+        /*
         $this->_view->posts = $paginador->paginar($this->_post->getPosts(), $pagina); //V12
         $this->_view->paginacion = $paginador->getView('prueba', 'post/index'); //V12 llama a la paginacion relacionada con la vista
 		$this->_view->titulo = 'portada';
-		$this->_view->renderizar('index', 'post');
+        $this->_view->renderizar('index', 'post');
+        */
+        $this->_view->assign('posts' , $paginador->paginar($this->_post->getPosts(), $pagina)); //V13
+        $this->_view->assign('paginacion', $paginador->getView('prueba', 'post/index')); //V13 llama a la paginacion relacionada con la vista
+		$this->_view->assign('titulo', 'portada'); //V13
+        $this->_view->renderizar('index', 'post'); //V13
+
 	}
     public function nuevo()
     {

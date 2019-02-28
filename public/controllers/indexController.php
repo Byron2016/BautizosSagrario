@@ -8,6 +8,7 @@ class indexController extends Controller
     
 	public function index()
 	{
+		//ant - V13
         //echo "Hola desde index Controler";
         /*
 		$post = $this->loadModel('post');
@@ -15,7 +16,13 @@ class indexController extends Controller
 		$this->_view->titulo = 'portada';
         $this->_view->renderizar('index', 'inicio');
 		*/
+		/*
 		$this->_view->titulo = 'Portada';
 		$this->_view->renderizar('index', 'inicio');
+		*/
+		$this->_view->assign('titulo','Portada') ; //V13
+		$this->_view->renderizar('index', 'inicio'); //V13
+		
+
 	}
 }
