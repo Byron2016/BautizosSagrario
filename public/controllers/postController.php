@@ -42,26 +42,72 @@ class postController extends Controller
 	}
     public function nuevo()
     {
-        Session::acceso('especial'); //v7
+        //Session::acceso('especial'); //v7
         //Session::acceso('usuario'); //v7
         //Session::accesoEstricto(array('usuario')); //V8
-    	$this->_view->titulo = 'Nuevo_post';
+        //$this->_view->titulo = 'Nuevo_post'; //comento en la V14
+        $this->_view->assign('titulo', 'Nuevo_post'); //V14
         $this->_view->setJs(array('nuevo'));
     	//$this->_view->prueba = $this->getTexto('titulo');
         if($this->getInt('guardar') == 1){
-            $this->_view->datos = $_POST; //para que se quede lleno. No deberia hacerse así sino hacer funcion que retorne parámetros post.
-            
+            // $this->_view->datos = $_POST; //comento en la V14 //para que se quede lleno. No deberia hacerse así sino hacer funcion que retorne parámetros post.
+            $this->_view->assign('datos',$_POST); //V14
             if(!$this->getTexto('titulo')){
-                $this->_view->_error = 'Debe introducir el titulo del post';
+                //$this->_view->_error = 'Debe introducir el titulo del post';
+                //$this->_view->renderizar('nuevo', 'post');
+                //exit;
+
+                $this->_view->assign('_error','Debe introducir el titulo del post');
                 $this->_view->renderizar('nuevo', 'post');
                 exit;
             }
             
             if(!$this->getTexto('cuerpo')){
-                $this->_view->_error = 'Debe introducir el cuerpo del post';
+                //$this->_view->_error = 'Debe introducir el cuerpo del post';
+                //$this->_view->renderizar('nuevo', 'post');
+                //exit;
+
+                $this->_view->assign('_error','Debe introducir el cuerpo del post');
                 $this->_view->renderizar('nuevo', 'post');
                 exit;
             }
+
+            $imagen = '';
+            if(isset($_FILES['imagen']['name']))
+            {
+                $this->getLibrary('class.upload','upload');
+                $ruta = ROOT . 'public' . DS . 'img' . DS . 'post' . DS;
+                $upload = new upload($_FILES['imagen'],'es_ES');
+                //tipos mimes a ser aceptados
+                $upload->allowed = array('image/*');
+                //renombrar
+                $upload->file_new_name_body = 'upl_' . uniqid();
+                //ruta donde queremos q se guarde el archivo
+                $upload->process($ruta);
+                //verificar si fue exitoso
+                if($upload->processed){
+                    //miniatura de imagen
+                    //https://www.verot.net/php_class_upload.htm
+                    $imagen = $upload->file_dst_name;
+                    $thumb = new upload($upload->file_dst_pathname);
+                    $thumb->image_resize = true;
+                    $thumb->image_x = 100;
+                    $thumb->image_y = 70;
+                    $thumb->file_name_body_pre = 'thumb_';
+                    $thumb->process($ruta . 'thumb' . DS);
+                } else {
+                    //error a la vista
+                    //echo "error echo";
+                    $this->_view->assign('_error', $upload->error);
+                    $this->_view->renderizar('nuevo', 'post');
+                    exit;
+                }
+            }
+
+
+
+
+
             //echo 'a1';
             /*
             $this->_post->insertarPost(
@@ -71,13 +117,15 @@ class postController extends Controller
             */
             $this->_post->insertarPost(
                     $this->getPostParam('titulo'),
-                    $this->getPostParam('cuerpo')
+                    $this->getPostParam('cuerpo'),
+                    $imagen
                     );
             
             $this->redireccionar('post');
         }  
     	$this->_view->renderizar('nuevo', 'post');
     }
+
     public function editar($id)
     {
         if(!$this->filtrarInt($id)){

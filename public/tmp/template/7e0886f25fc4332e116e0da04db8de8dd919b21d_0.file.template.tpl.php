@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-02-28 18:21:35
+/* Smarty version 3.1.33, created on 2019-02-28 19:59:38
   from '/home/vagrant/code/SagrarioBautizos/public/views/layout/layout1/template.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5c7826af3dbed9_15718681',
+  'unifunc' => 'content_5c783daab72079_37210119',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7e0886f25fc4332e116e0da04db8de8dd919b21d' => 
     array (
       0 => '/home/vagrant/code/SagrarioBautizos/public/views/layout/layout1/template.tpl',
-      1 => 1551377690,
+      1 => 1551383971,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5c7826af3dbed9_15718681 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5c783daab72079_37210119 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -36,7 +36,7 @@ estilos.css" rel="stylesheet" type="text/css" />
 public/js/jquery.js" type="text/javascript"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['ruta_css'];?>
+ src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/js/jquery.validate.js" type="text/javascript"><?php echo '</script'; ?>
 >
     <!-- Para aumentar los js personalidos -->

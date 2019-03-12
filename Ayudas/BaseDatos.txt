@@ -74,3 +74,41 @@ CREATE TABLE IF NOT EXISTS `ba_sag_2019`.`prueba` (
   `id` int(4) unsigned auto_increment primary key,
   `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL
 );
+
+Video 14
+
+CREATE TABLE IF NOT EXISTS `ba_sag_2019`.`paises` (
+  `id` int(4) unsigned auto_increment primary key,
+  `pais` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS `ba_sag_2019`.`ciudades` (
+  `id` int(4) unsigned auto_increment primary key,
+  `ciudad` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `pais` int(4) unsigned,
+  FOREIGN KEY fk_pais(pais)
+  REFERENCES paises(id)
+  ON UPDATE CASCADE
+  ON DELETE RESTRICT
+) ENGINE=INNODB;
+
+//insert into `ba_sag_2019`.`paises` values(null, 'Ecuador');
+
+//insert into `ba_sag_2019`.`ciudades` values(null, 'Quito', 1);
+
+insert into `ba_sag_2019`.`paises` values(null, 'Rep. Dominicana'), (null, 'España');
+
+insert into `ba_sag_2019`.`ciudades` values(null, 'Sto. Domingo', 1), (null, 'Cartagena', 2);
+
+insert into `ba_sag_2019`.`ciudades` values(null, 'Quito', 3), (null, 'Guayaquil', 3), (null, 'Loja', 3);
+
+
+CREATE TABLE `ba_sag_2019`.`posts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `titulo` VARCHAR(150) CHARACTER SET 'utf8' NOT NULL,
+  `cuerpo` TEXT(200) CHARACTER SET 'utf8' NOT NULL,
+  `imagen` VARCHAR(100) CHARACTER SET 'utf8'  NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_spanish_ci;

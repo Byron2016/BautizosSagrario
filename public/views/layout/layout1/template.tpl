@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
     <link href="{$_layoutParams.ruta_css}estilos.css" rel="stylesheet" type="text/css" />
     <script src="{$_layoutParams.root}public/js/jquery.js" type="text/javascript"></script>
-    <script src="{$_layoutParams.ruta_css}public/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="{$_layoutParams.root}public/js/jquery.validate.js" type="text/javascript"></script>
     <!-- Para aumentar los js personalidos -->
     {if isset($_layoutParams.js) && count($_layoutParams.js)}
         {foreach item=js from=$_layoutParams.js}

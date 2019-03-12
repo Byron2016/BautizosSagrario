@@ -88,6 +88,10 @@ https://www.youtube.com/watch?v=BO2lzbSNvy0&list=PLMVWdD5bcndrmfgQdYeZqTx-OP8SQi
             add_header Content-Type image/png;
         }
 
+        location ~ \.jpg {
+            add_header Content-Type image/jpg;
+        }
+
     4.- Ejecutar: sudo /etc/init.d/nginx restart
 
     5.- Para Copiar
@@ -104,3 +108,14 @@ https://www.youtube.com/watch?v=BO2lzbSNvy0&list=PLMVWdD5bcndrmfgQdYeZqTx-OP8SQi
 		Mailhog: https://www.solucionex.com/blog/mailhog-para-testear-emails
 ************************************************************************************************
 ************************************************************************************************
+
+
+************************************************************************************************
+************************************************************************************************
+	class.upload.php
+	https://www.verot.net/php_class_upload.htm?lang=en-GB
+	Nota: 
+		
+************************************************************************************************
+************************************************************************************************
+

@@ -54,6 +54,10 @@ server {
             add_header Content-Type image/png;
         }
 
+        location ~ \.jpg {
+            add_header Content-Type image/jpg;
+        }
+
     location ~ /\.ht {
         deny all;
     }
