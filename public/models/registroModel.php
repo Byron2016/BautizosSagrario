@@ -1,4 +1,5 @@
 <?php
+
 class registroModel extends Model
 {
     //V10 - V11
@@ -55,14 +56,15 @@ class registroModel extends Model
     public function registrarUsuario($nombre, $usuario, $password, $email)
     {
 		//V10 - V11 
+		$random = rand(178259847, 999999999);
 		/*
 		echo "<br>";
-		$sql = "insert into usuarios values" ;
-		$sql = $sql . "(null, :nombre, :usuario, :pass, :email,'" .  ROLL_DEFECTO . "', " . ESTADO_DEFECTO . ",now())";
+		$sql = "insert into usuarios values " ;
+		$sql = $sql . "(null, '$nombre', '$usuario', '" . Hash::getHash('md5', $password, HASH_KEY)."', ";
+		$sql = $sql . "' $email', '" .  ROLL_DEFECTO . "', " . ESTADO_DEFECTO . ",now(), $random)";
 		echo $sql;
 		echo "<br>";
 		*/
-		$random = rand(1782598471, 9999999999);
 
     	$this->_db->prepare(
     			"insert into usuarios values" .

@@ -1,13 +1,22 @@
 <?php 
-
+/*
+use PHPMailer\PHPMailer\Exception; //V11
+use PHPMailer\PHPMailer\PHPMailer; //V11
+*/
 abstract class Controller
 {
-    //anteriores - V9 - V10
+    //anteriores - V9 - V10 - V15
     protected $_view;
+    protected $_acl; //V15
     
 	public function __construct()
 	{
-		$this->_view = new View(new Request);
+        $this->_acl = new ACL(); //V15
+        $this->_request = new Request();  //V15
+        //$this->_view = new View(new Request); //comentado en V15
+        //echo 'constructor Controller ' . '<br>';
+        $this->_view = new View($this->_request, $this->_acl); //V15
+        //echo 'constructor Controller salir ' . '<br>';
     }
     
     abstract public function index();
@@ -37,7 +46,7 @@ abstract class Controller
     protected function getLibrary($libreria,$dirInterno)
     {
         $rutaLibreria = ROOT . 'libs' . DS . $dirInterno . DS . $libreria . '.php';
-        //echo $rutaLibreria . "<br>";
+        //echo "<br>" . $rutaLibreria . "<br>";
         
         if (is_readable($rutaLibreria))
         {
@@ -144,11 +153,25 @@ abstract class Controller
     public function validarEmail($email)
     {
         //V10
+        $email = trim($email);
+        /*
         echo ' el email es: ' . $email . '<br>';
+        var_dump(filter_var('bgva2005@yahoo.com', FILTER_VALIDATE_EMAIL));
+        var_dump(filter_var($email, FILTER_VALIDATE_EMAIL));
+        echo '<br>';
+        $a = filter_var($email, FILTER_VALIDATE_EMAIL);
+        echo $a . ' antes exit '  . '<br>';
+        if(!$a){
+            echo 'aaaaaaa' . '<br>';
+        } else {
+            echo 'bbbbb' . '<br>';
+        }
+        */
+        //exit;
         if(!filter_var($email, FILTER_VALIDATE_EMAIL))
         {
             echo 'Entro a el mail no es válido y retorna false';
-                return FALSE;
+            return FALSE;
         }
         
         return true;

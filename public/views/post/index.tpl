@@ -17,8 +17,21 @@
         {/if}
         </td>
 
-        <td><a href="{$_layoutParams.root}post/editar/{$datos.id}">Editar</a></td>
-        <td><a href="{$_layoutParams.root}post/eliminar/{$datos.id}">Eliminar</a></td>
+        <td> 
+            {if $_acl->permiso('editar_post')}
+                <a href="{$_layoutParams.root}post/editar/{$datos.id}">Editar</a>
+            {else}
+                <a href="{$_layoutParams.root}post/editar/{$datos.id}" class="disabled">Editar</a>
+            {/if}
+        </td>
+
+        <td> 
+            {if $_acl->permiso('eliminar_post')}
+                <a href="{$_layoutParams.root}post/eliminar/{$datos.id}">eliminar</a>
+            {else}
+                <a href="{$_layoutParams.root}post/eliminar/{$datos.id}" class="disabled">eliminar</a>
+            {/if}
+        </td>
     </tr> 
     {/foreach}
 </table>
@@ -29,10 +42,14 @@
 
 {/if}
 
-{if isset($paginacion)} {$paginacion}{/if}
+{* {if isset($paginacion)} {$paginacion}{/if} *}
+
+{$paginacion|default:""}
 
 {* {if Session::accesoViewEstricto(array('usuario'))} *}
 
+{* <p><a href="{$_layoutParams.root}post/nuevo">Agregar Post</a></p>  *}
+{if $_acl->permiso('nuevo_post')}
     <p><a href="{$_layoutParams.root}post/nuevo">Agregar Post</a></p>
-
+{/if}
 {* {/if} *}

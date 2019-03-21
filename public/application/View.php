@@ -1,5 +1,5 @@
 <?php 
-//ant - V13
+//ant - V13 - V15
 /*
 $ru = ROOT . DS . 'libs' . DS . 'smarty' . DS . 'Smarty.class.php';
 echo $ru;
@@ -9,19 +9,25 @@ require_once ROOT . DS . 'libs' . DS . 'smarty'. DS . 'libs' . DS . 'Smarty.clas
 
 class View extends Smarty
 {
+    //V15
     private $_controlador;
     private $_js;
+    private $_acl; //V15
 
-	public function __construct(Request $peticion)
+	public function __construct(Request $peticion, ACL $_acl) //V15 aumenta , ACL $_acl
 	{
+        //V15
+        //echo 'View constructor ' . '<br>';
         parent::__construct();
         $this->_controlador = $peticion->getControlador();
         $this->_js = array();
+        $this->_acl = $_acl; //V15
 
 	}
     public function renderizar($vista, $item = false)
     {
         //ant - V13
+        //echo 'View renderizar ' . '<br>';
         $this->template_dir = ROOT . 'views' . DS . 'layout' . DS . DEFAULT_LAYOUT .DS; //V13
 		$this->config_dir = ROOT . 'views' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'configs' . DS ; //V13
 		$this->cache_dir = ROOT . 'tmp' . DS . 'cache' .DS; //V13
@@ -70,7 +76,10 @@ class View extends Smarty
             throw new Exception ('Error application View: Error de vista');
         }
 
+        $this->assign('_acl', $this->_acl); //V15
+
         $this->assign('_layoutParams', $_params); //V13
+        //echo 'View renderizar antes display template ' . '<br>';
         $this->display('template.tpl'); //V13
 
         

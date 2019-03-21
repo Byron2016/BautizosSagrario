@@ -42,6 +42,8 @@ class postController extends Controller
 	}
     public function nuevo()
     {
+        //ant - V15
+        $this->_acl->acceso('nuevo_post'); //V15
         //Session::acceso('especial'); //v7
         //Session::acceso('usuario'); //v7
         //Session::accesoEstricto(array('usuario')); //V8
@@ -128,6 +130,8 @@ class postController extends Controller
 
     public function editar($id)
     {
+        //ant - V15
+        $this->_acl->acceso('editar_post'); //V15
         if(!$this->filtrarInt($id)){
             $this->redireccionar('post');
         }
@@ -136,20 +140,23 @@ class postController extends Controller
             $this->redireccionar('post');
         }
         
-        $this->_view->titulo = 'Editar Post';
+        //$this->_view->titulo = 'Editar Post'; // V15 se comenta
+        $this->_view->assign('titulo','Editar Post'); // V15
         $this->_view->setJs(array('nuevo'));
         //si se envio parametro guardar quiere decir que epresione sublim.
         if($this->getInt('guardar') == 1){
             $this->_view->datos = $_POST;
             
             if(!$this->getTexto('titulo')){
-                $this->_view->_error = 'Debe introducir el titulo del post';
+                //$this->_view->_error = 'Debe introducir el titulo del post';// V15 se comenta
+                $this->_view->assign('_error','Debe introducir el titulo del post');// V15
                 $this->_view->renderizar('editar', 'post');
                 exit;
             }
             
             if(!$this->getTexto('cuerpo')){
-                $this->_view->_error = 'Debe introducir el cuerpo del post';
+                //$this->_view->_error = 'Debe introducir el cuerpo del post';// V15 se comenta
+                $this->_view->assign('_error','Debe introducir el cuerpo del post');// V15
                 $this->_view->renderizar('editar', 'post');
                 exit;
             }
@@ -163,12 +170,15 @@ class postController extends Controller
             $this->redireccionar('post');
         }
         
-        $this->_view->datos = $this->_post->getPost($this->filtrarInt($id)); //los datos de la vista lo llenamos con el registro base datos
+        //$this->_view->datos = $this->_post->getPost($this->filtrarInt($id)); //los datos de la vista lo llenamos con el registro base datos // V15 se comenta
+        $this->_view->assign('posts', $this->_post->getPost($this->filtrarInt($id)));// V15
         $this->_view->renderizar('editar', 'post');
     }
     public function eliminar($id)
     {
-        Session::acceso('admin'); //v7
+        //ant v7 V15
+        //Session::acceso('admin'); //v7
+        $this->_acl->acceso('eliminar_post'); //V15
         if(!$this->filtrarInt($id)){
             $this->redireccionar('post');
         }

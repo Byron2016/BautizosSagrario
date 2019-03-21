@@ -112,3 +112,85 @@ CREATE TABLE `ba_sag_2019`.`posts` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_spanish_ci;
+
+
+Video 15
+
+alter table `ba_sag_2019`.`usuarios` change role role int not null;
+
+insert into `ba_sag_2019`.`usuarios` values(null, 'nombre1', 'admin', 'd27fae2fb0995a49b66be9e97667c8a3', 'admin@yahoo.com', 1, 1, now());
+
+insert into `ba_sag_2019`.`usuarios` values(null, 'usr1', 'usr1', 'd27fae2fb0995a49b66be9e97667c8a3', 'usr1@yahoo.com', 2, 1, now(),2);
+insert into `ba_sag_2019`.`usuarios` values(null, 'usr2', 'usr2', 'd27fae2fb0995a49b66be9e97667c8a3', 'usr2@yahoo.com', 3, 1, now(),3);
+
+CREATE TABLE IF NOT EXISTS `ba_sag_2019`.`usuarios` (
+  `id` int(4) unsigned auto_increment primary key,
+  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `usuario` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `pass` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `role` enum("admin","especial","usuario") NOT NULL,
+  `estado` tinyint(4) NOT NULL,
+  `fecha` DATETIME NOT NULL,
+  `codigo` int(10) UNSIGNED NOT NULL UNIQUE
+);
+
+describe `ba_sag_2019`.`usuarios`;
+
+CREATE TABLE `ba_sag_2019`.`roles`(
+  `id_role` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(100) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE `ba_sag_2019`.`permisos`(
+  `id_permiso` int(11) NOT NULL AUTO_INCREMENT,
+  `permiso` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `key` varchar(50) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id_permiso`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE `ba_sag_2019`.`permisos_role`(
+  `role` int(11) NOT NULL ,
+  `permiso` int(11) NOT NULL ,
+  `valor` tinyint  NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+alter table `ba_sag_2019`.`permisos_role` add unique role(role,permiso);
+
+CREATE TABLE `ba_sag_2019`.`permisos_usuario`(
+  `usuario` int(11) NOT NULL ,
+  `permiso` int(11) NOT NULL ,
+  `valor` tinyint  NOT NULL,
+  unique key usuario(usuario, permiso)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+
+insert into roles values (null, 'Administrador');
+insert into roles values (null, 'Gestor');
+insert into roles values (null, 'Editor');
+
+insert into permisos values (null, 'Tareas de administración', 'admin_access');
+insert into permisos values (null, 'Agregar Posts', 'nuevo_post');
+insert into permisos values (null, 'Editar Posts', 'editar_post');
+insert into permisos values (null, 'Eliminar Posts', 'eliminar_post');
+
+insert into permisos_role values (1,1,1),(1,2,1),(1,3,1),(1,4,1);
+insert into permisos_role values (2,2,1),(2,3,1),(2,4,1);
+insert into permisos_role values (3,2,1),(3,3,1);
+
+insert into permisos_usuario values (1,2,0),(1,3,0);
+truncate table permisos_usuario;
+
+select * from roles;
+select * from permisos;
+select * from permisos_role;
+
+select r.role, p.permiso, pr.valor 
+from roles r, permisos p, permisos_role pr
+where r.id_role = pr.role and p.id_permiso = pr.permiso 
+order by r.role;
+
+select r.role, p.permiso, pr.valor from roles r, permisos p, permisos_role pr where r.id_role = pr.role and p.id_permiso = pr.permiso order by r.role;
+

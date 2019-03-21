@@ -10,18 +10,29 @@ class errorController extends Controller
 	}
 	public function index()
 	{
-        //V7
-        $this->_view->titulo = 'Error';
-        $this->_view->mensaje = $this->_getError();
+        //V7 - V15
+        // $this->_view->titulo = 'Error'; //V15 se comenta
+        // $this->_view->mensaje = $this->_getError(); //V15 se comenta
+
+        //V15
+        $this->_view->assign('titulo','Error'); //V15
+        $this->_view->assign('mensaje',$this->_getError()); //V15
+
+
         $this->_view->renderizar('index');
         
     }
 
     public function access($codigo)
     {
-        //V7
-        $this->_view->titulo = 'Error';
-        $this->_view->mensaje = $this->_getError($codigo);
+        //V7 - V15
+        //$this->_view->titulo = 'Error'; //V15 se comenta
+        //$this->_view->mensaje = $this->_getError($codigo); //V15 se comenta
+
+        //V15
+        $this->_view->assign('titulo','Error'); //V15
+        $this->_view->assign('mensaje',$this->_getError($codigo)); //V15
+
         $this->_view->renderizar('access');
     }
 

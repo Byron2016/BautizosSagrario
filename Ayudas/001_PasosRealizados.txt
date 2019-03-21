@@ -106,6 +106,7 @@ https://www.youtube.com/watch?v=BO2lzbSNvy0&list=PLMVWdD5bcndrmfgQdYeZqTx-OP8SQi
 	https://alexwebdevelop.com/phpmailer-tutorial/
 	Nota: 
 		Mailhog: https://www.solucionex.com/blog/mailhog-para-testear-emails
+            --> http://localhost:8025/
 ************************************************************************************************
 ************************************************************************************************
 

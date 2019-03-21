@@ -9,6 +9,15 @@ class Bootstrap
 		// echo $rutaControlador; exit;
 		$metodo =  $peticion->getMetodo();
 		$args = $peticion->getArgs();
+		/*
+		echo "Bootstrap.php run rutaControlador "  . $rutaControlador . '<br>'; 
+		echo "Bootstrap.php run controller "  . $controller . '<br>'; 
+		echo "Bootstrap.php run metodo "  . $metodo . '<br>'; 
+		echo "Bootstrap.php run args "  .  '<br>'; 
+		print_r($args);
+		echo "Bootstrap.php run args "  .  '<br>';
+		//exit;
+		*/
 		if(is_readable($rutaControlador)){
 			//vverificar si archivo existe y es legible
 			require_once $rutaControlador;

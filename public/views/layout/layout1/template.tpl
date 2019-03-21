@@ -6,6 +6,7 @@
     <title>{$titulo|default:"Sin título"}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
     <link href="{$_layoutParams.ruta_css}estilos.css" rel="stylesheet" type="text/css" />
+    <link href="{$_layoutParams.root}public/css/estilosLocal.css" rel="stylesheet" type="text/css" />
     <script src="{$_layoutParams.root}public/js/jquery.js" type="text/javascript"></script>
     <script src="{$_layoutParams.root}public/js/jquery.validate.js" type="text/javascript"></script>
     <!-- Para aumentar los js personalidos -->
