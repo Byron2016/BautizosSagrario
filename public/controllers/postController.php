@@ -106,10 +106,6 @@ class postController extends Controller
                 }
             }
 
-
-
-
-
             //echo 'a1';
             /*
             $this->_post->insertarPost(
@@ -131,7 +127,7 @@ class postController extends Controller
     public function editar($id)
     {
         //ant - V15
-        $this->_acl->acceso('editar_post'); //V15
+        //$this->_acl->acceso('editar_post'); //V15
         if(!$this->filtrarInt($id)){
             $this->redireccionar('post');
         }
@@ -145,7 +141,8 @@ class postController extends Controller
         $this->_view->setJs(array('nuevo'));
         //si se envio parametro guardar quiere decir que epresione sublim.
         if($this->getInt('guardar') == 1){
-            $this->_view->datos = $_POST;
+            //$this->_view->datos = $_POST;
+            $this->_view->assign('datos',$_POST); //V14
             
             if(!$this->getTexto('titulo')){
                 //$this->_view->_error = 'Debe introducir el titulo del post';// V15 se comenta

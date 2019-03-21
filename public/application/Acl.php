@@ -46,24 +46,11 @@ class ACL
 			); 
 		//echo ' ' . '<pre>'; print_r($this->_permisos); echo ' ' . '<br>';
 	}
-	public function impAcl(){
-		echo 'ACL compilarAcl ROLE ' . '<br>';
-		echo ' ' . '<pre>';
-		print_r($this->_role);
-		echo ' ' . '<br>';
-		echo 'ACL compilarAcl PERMISOS ' . '<br>';
-		echo ' ' . '<pre>';
-		print_r($this->_permisos);
-		echo ' ' . '<br>';
-		echo 'ACL compilarAcl PERMISOS_USUARIO ' . '<br>';
-		echo ' ' . '<pre>';
-		print_r($this->getPermisosUsuario());
-		echo ' ' . '<br>';
-	}
+
 	public function getRole()
 	{
         //V15
-		$this->_id = 1;
+		//$this->_id = 1;
 		//$a = "select * from usuarios where id = {$this->_id}";
 		//echo $a;
 		$role = $this->_db->query("select role from usuarios where id = {$this->_id}");
@@ -85,10 +72,10 @@ class ACL
 	}
 	public function getPermisosRoleId()
 	{
-        //V15
+        //V15 V16
 		$ids = $this->_db->query("select permiso from permisos_role where role = '{$this->_role}'");
 		$ids = $ids->fetchAll(PDO::FETCH_ASSOC);
-		$id = array();
+		$id = array(); //V16
 		
 		for($i = 0; $i < count($ids); $i++){
 			$id[] = $ids[$i]['permiso'];
@@ -141,10 +128,11 @@ class ACL
 	}
 	public function getPermisosUsuario()
 	{
-        //V15
+        //V15 - V16
 		//retorna permisos del usuario
 		$ids = $this->getPermisosRoleId();
 		if(count($ids)){
+			//V16
 			//echo 'aca';
 			//echo "select * from permisos_usuario where usuario = {$this->_id} and permiso in (". implode(',',$ids) .')';
 			$permisos = $this->_db->query("select * from permisos_usuario where usuario = {$this->_id} and permiso in (". implode(',',$ids) .')');
@@ -207,5 +195,19 @@ class ACL
 		}
 		header('location:' . BASE_URL . 'error/access/5050');
 		exit;
+	}
+	public function impAcl(){
+		echo 'ACL compilarAcl ROLE ' . '<br>';
+		echo ' ' . '<pre>';
+		print_r($this->_role);
+		echo ' ' . '<br>';
+		echo 'ACL compilarAcl PERMISOS ' . '<br>';
+		echo ' ' . '<pre>';
+		print_r($this->_permisos);
+		echo ' ' . '<br>';
+		echo 'ACL compilarAcl PERMISOS_USUARIO ' . '<br>';
+		echo ' ' . '<pre>';
+		print_r($this->getPermisosUsuario());
+		echo ' ' . '<br>';
 	}
 }
