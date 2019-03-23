@@ -6,7 +6,7 @@
 <p>Permisos</p>
 
 <form name='form1' method='post' action=''>
-	<input type="hidden" name="guardard" value ='1'/>
+	<input type="hidden" name="guardar" value ='1'/>
 
 	{if isset($permisos) && count($permisos)}
 		<table>

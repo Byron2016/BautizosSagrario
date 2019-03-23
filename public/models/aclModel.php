@@ -69,16 +69,14 @@ class aclModel extends Model
     public function eliminarPermisoRole($roleID, $permisoID)
     {
         //V16
-        //echo "eliminapermisorole delete from permisos_role where role = $roleID and permiso = $permisoID ". '<br>';
-        $this->_db->query("delete from permisos_role " . 
-            "where role = $roleID and permiso = $permisoID ");
+        echo "eliminapermisorole delete from permisos_role where role = $roleID and permiso = $permisoID ". '<br>';
+        $this->_db->query("delete from permisos_role  where role = $roleID and permiso = $permisoID ");
     }
     public function editarPermisosRole($roleID, $permisoID, $valor)
     {
         //V16
         //echo "editapermisosrole replace into permisos_role set role = $roleID , permiso = $permisoID, valor ='$valor'". '<br>';
-        $this->_db->query("replace into permisos_role " . 
-            "set role = $roleID , permiso = $permisoID, valor ='$valor'");
+        $this->_db->query("replace into permisos_role  set role = $roleID , permiso = $permisoID, valor ='$valor'");
     }
     public function getPermisoKey($permisoID)
     {

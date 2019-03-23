@@ -37,8 +37,8 @@ class aclController extends Controller
 		}
 		$this->_view->assign('titulo','Administración de permisos role');
 		//var_dump($_POST);
-		if($this->getInt('guardard') == 1){
-			//echo 'entro guardar' . '<br>';
+		if($this->getInt('guardar') == 1){
+            // echo 'entro guardar' . '<br>'; exit;
 			$values = array_keys($_POST);
 			$replace = array();
 			$eliminar = array();
