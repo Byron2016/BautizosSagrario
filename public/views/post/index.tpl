@@ -49,7 +49,9 @@
 {* {if Session::accesoViewEstricto(array('usuario'))} *}
 
 {* <p><a href="{$_layoutParams.root}post/nuevo">Agregar Post</a></p>  *}
+
 {if $_acl->permiso('nuevo_post')}
     <p><a href="{$_layoutParams.root}post/nuevo">Agregar Post</a></p>
 {/if}
+
 {* {/if} *}

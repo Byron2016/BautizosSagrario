@@ -5,9 +5,10 @@ use PHPMailer\PHPMailer\PHPMailer; //V11
 */
 abstract class Controller
 {
-    //anteriores - V9 - V10 - V15
+    //anteriores - V9 - V10 - V15 - V19
     protected $_view;
     protected $_acl; //V15
+    protected $_request; //V18
     
 	public function __construct()
 	{
@@ -27,6 +28,18 @@ abstract class Controller
         $modelo = $modelo . 'Model';
         $rutaModelo = ROOT . 'models' . DS . $modelo . '.php';
         //echo '<br> dentro de Controller LoadModel El modelo levantado es: ' . $rutaModelo .' modelo ' . $modelo . '<br>';
+
+
+        if(!$modulo){
+            $modulo = $this->_request->getModulo();
+        }
+        if($modulo){
+            if($modulo != 'default'){
+                
+                $rutaModelo = ROOT . 'modules' . DS . $modulo . DS . 'models' . DS . $modelo .  '.php'; 
+            }
+        }
+
         if (is_readable($rutaModelo))
         {
             //echo '<br> si es legible EL MODELO ' . $rutaModelo . '<br><br>';

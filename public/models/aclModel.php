@@ -43,7 +43,7 @@ class aclModel extends Model
         //echo "get permisosrol select * from permisos_role where role = $roleID ". '<br>';
         $permisos = $this->_db->query("select * from permisos_role where role = $roleID");
         $permisos = $permisos->fetchAll(PDO::FETCH_ASSOC);
-        //var_dump($permisos);
+        //var_dump($permisos); exit;
         
         for($i = 0; $i < count($permisos); $i++){
             $key = $this->getPermisoKey($permisos[$i]['permiso']);
@@ -63,7 +63,7 @@ class aclModel extends Model
         }
         //var_dump($data);
         $data = array_merge($this->getPermisosAll(), $data);
-        //var_dump($data);
+        //var_dump($data); exit;
         return $data;
     }
     public function eliminarPermisoRole($roleID, $permisoID)

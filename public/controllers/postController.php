@@ -9,13 +9,15 @@ class postController extends Controller
 	}
 	public function index($pagina = false)
 	{
-        //ant - V12
+        //ant - V12 - V19
         /*
         for($i = 0; $i < 300; $i++){
             $model = $this->loadModel('post');
             $model->insertarPost('titulo' . $i, 'cuerpo' . $i);
         }
         */
+        //$this->_acl->acceso('nuevo_post'); //V19
+        $this->_view->setJs(array('prueba')); //V19
         if(!$this->filtrarInt($pagina)){
             $pagina = false;
         }

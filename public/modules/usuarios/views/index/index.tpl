@@ -14,7 +14,7 @@
 				<td>{$us.usuario}</td>
                 <td>{$us.role}</td>
                 <td>
-					<a href='{$_layoutParams.root}usuarios/permisos/{$us.id}'>Permisos</a>
+					<a href='{$_layoutParams.root}usuarios/index/permisos/{$us.id}'>Permisos</a>
 				</td>
 			</tr>
 		{/foreach}

@@ -23,7 +23,7 @@ class ACL
 			if(Session::get('id_usuario')){
 				$this->_id = Session::get('id_usuario');
 			} else {
-				$this->_id = 1;
+				$this->_id = 0;
 			}
 		}
 		//$this->_registry = Registry::getInstancia(); //22
@@ -31,6 +31,8 @@ class ACL
 		$this->_db = new DataBase(); //22 //echo "en 1"  . '<br>';
 		$this->_role = $this->getRole(); //echo "en 2"  . '<br>';
 		$this->_permisos = $this->getPermisosRole(); //echo "en 3"  . '<br>';
+		//echo $this->_id;
+		//var_dump($this->_permisos); //exit;
 		$this->compilarAcl();  //echo "en 4"  . '<br>';
 		//echo "en acl function __construct antes salir"  . '<br>';
 	}
@@ -177,7 +179,13 @@ class ACL
 	}
 	public function permiso($key)
 	{
-        //V15 SE USARA EN LAS VISTAS
+		//V15 SE USARA EN LAS VISTAS
+		/*
+		var_dump($key);
+		echo "<br>";
+		var_dump($this->_permisos); //exit;
+		*/
+
 		if(array_key_exists($key, $this->_permisos)){
 			if($this->_permisos[$key]['valor'] == true || $this->_permisos[$key]['valor'] == 1){
 				return true;
@@ -190,7 +198,7 @@ class ACL
 		//V15 SE USARA EN LOS CONTROLADORES
 		//Ponder como parm ingreso un codigo de error para mandar
 		if($this->permiso($key)){
-			//Session::tiempo(); //para controlar tiempos. en este momento lo desabilito.
+			Session::tiempo(); //para controlar tiempos. en este momento lo desabilito.
 			return;
 		}
 		header('location:' . BASE_URL . 'error/access/5050');

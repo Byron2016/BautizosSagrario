@@ -1,5 +1,9 @@
 <?php
-class usuariosModel extends Model
+//V19 
+//cambia de 
+	//class usuariosModel extends Model
+	//class indexsModel extends Model
+class indexModel extends Model
 {
     //V17
     public function __construc()

@@ -18,7 +18,7 @@ class loginController extends Controller
     public function index()
     {
         //V9 - V10 - V15
-        echo 'index loginCongroller ' . '<br>';
+        //echo 'index loginCongroller ' . '<br>';
         if(Session::get('autenticado')){
             //V10
             $this->redireccionar();
@@ -72,17 +72,16 @@ class loginController extends Controller
                        
             Session::set('autenticado', true);
             Session::set('level', $row['role']);
+            //echo 'level: ' . Session::get('level').'<br>'; exit;
            // Session::set('usuario', $row['usuario']);
-            //Session::set('id_usuario', $row['id']);
+            Session::set('id_usuario', $row['id']);
             Session::set('tiempo', time());
-            //print_r($_SESSION);
+            // print_r($_SESSION); exit;
             
             $this->redireccionar();
-            
         }
         
-        $this->_view->renderizar('index','login');
-        
+        $this->_view->renderizar('index','login');   
     }
     
     /*

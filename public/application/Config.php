@@ -7,7 +7,8 @@ define('DEFAULT_METODO', 'index');
 define('BASE_URL', 'http://SagrarioBautizos.net/');
 //CONSTANTE PARA INCLUIR ARCHIVOS DEL LADO DEL USUARIO, DEL LADO DE LAS VISTAS
 //define('DEFAULT_LAYOUT', 'default');
-define('DEFAULT_LAYOUT', 'layout1');
+//define('DEFAULT_LAYOUT', 'layout1');
+define('DEFAULT_LAYOUT', 'twb');
 define('APP_NAME', 'BAUTIZOS EL SAGRARIO');
 define('APP_SLOGAN', 'FRAMEWORK php mvc');
 define('APP_COMPANY', 'SagrarioBautizos.net');

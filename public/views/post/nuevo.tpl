@@ -10,3 +10,4 @@
      
       
     <p><input type="submit" class="button" value="Guardar" /></p>
+    <a href="javascript:history.back(1)">Retornar</a>
