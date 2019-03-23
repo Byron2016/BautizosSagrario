@@ -2,8 +2,10 @@
 
 class Bootstrap
 {
+	//ant - V18
 	public static function run(Request $peticion)
 	{
+		$modulo = $peticion->getModulo(); //V18
 		$controller = $peticion->getControlador() . 'Controller';
 		$rutaControlador = ROOT . 'controllers' . DS . $controller  . '.php';
 		// echo $rutaControlador; exit;
@@ -18,6 +20,33 @@ class Bootstrap
 		echo "Bootstrap.php run args "  .  '<br>';
 		//exit;
 		*/
+
+		if($modulo){
+			//V18
+			//revisamos si trabajamos en base a modulo o controlador
+			$rutaModulo = ROOT . 'controllers' . DS . $modulo . 'Controller.php';
+			//$rutaModulo = ROOT . 'modules' . DS . $modulo . DS . 'controllers' . DS . $controller . '.php'; //revisa si hay controlador base para el modulo. El proposito de este es q proporcione código para el módulo completo.
+			//echo $rutaModulo . '<br>'; exit;
+			if(is_readable($rutaModulo)){
+				require_once $rutaModulo;
+				$rutaControlador = ROOT . 'modules' . DS . $modulo . DS .  'controllers' . DS . $controller . '.php';
+			}
+			else {
+				throw new Exception('Error en Bootstrap: No encontrado modulo solicitado: ' );
+			}
+		}
+		else {
+			$rutaControlador = ROOT . 'controllers' . DS . $controller . '.php';
+			//echo $rutaControlador;
+		}
+
+
+
+
+
+
+
+
 		if(is_readable($rutaControlador)){
 			//vverificar si archivo existe y es legible
 			require_once $rutaControlador;
