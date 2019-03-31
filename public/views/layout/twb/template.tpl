@@ -1,3 +1,4 @@
+{* ant - V20 *}
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -139,11 +140,11 @@
         
 
         <script type="text/javascript">
-            var _root_ = '{$_layoutParams.root}'; /*esto nos permite tener la variable disponible para javascript, la llamamos en prueba_ajax.js*/
+            var _root_ = '{$_layoutParams.root}'; /*V20 esto nos permite tener la variable disponible para javascript, la llamamos en prueba_ajax.js*/
         </script>
         
 
-        {if isset($_layoutParams.js_plugin) && count($_layoutParams.js_plugin)}
+        {if isset($_layoutParams.js_plugin) && count($_layoutParams.js_plugin)}  {* V20 *}
             {foreach item=plg from=$_layoutParams.js_plugin}
                 <script src="{$plg}" type="text/javascript"></script>
             {/foreach}

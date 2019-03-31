@@ -44,7 +44,7 @@ class postController extends Controller
 	}
     public function nuevo()
     {
-        //ant - V15
+        //ant - V15 - V20
         $this->_acl->acceso('nuevo_post'); //V15
         //Session::acceso('especial'); //v7
         //Session::acceso('usuario'); //v7
@@ -53,6 +53,7 @@ class postController extends Controller
         $this->_view->assign('titulo', 'Nuevo_post'); //V14
         $this->_view->setJs(array('nuevo'));
     	//$this->_view->prueba = $this->getTexto('titulo');
+        $this->_view->setJsPlugin(array('jquery.validate')); //V20
         if($this->getInt('guardar') == 1){
             // $this->_view->datos = $_POST; //comento en la V14 //para que se quede lleno. No deberia hacerse así sino hacer funcion que retorne parámetros post.
             $this->_view->assign('datos',$_POST); //V14
@@ -193,24 +194,67 @@ class postController extends Controller
 
     public function prueba($pagina = false)
     {
-        //V12
+        //V12 - V20
         /*
         for($i =0; $i <300; $i++){
             $model = $this->loadModel('post');
             $model->insertarPrueba('nombre ' . $i) ;
         }
         */
+        /*
+        //comentado V20
         if(!$this->filtrarInt($pagina)){
             $pagina = false;
         }else {
             $pagina = (int) $pagina;
         }
+        */
         $this->getLibrary('paginador','paginador');
         $paginador = new Paginador();
+        $this->_view->setJs(array('prueba_ajax'));
         
-        $this->_view->posts = $paginador->paginar($this->_post->getPrueba(), $pagina); //V12
-        $this->_view->paginacion = $paginador->getView('prueba', 'post/prueba'); //V12 llama a la paginacion relacionada con la vista
-		$this->_view->titulo = 'post';
-		$this->_view->renderizar('prueba', 'post');
+        //$this->_view->posts = $paginador->paginar($this->_post->getPrueba(), $pagina); //V12 //V20 comentada
+        //$this->_view->paginacion = $paginador->getView('prueba', 'post/prueba'); //V12 llama a la paginacion relacionada con la vista //V20 comentada
+        //$this->_view->titulo = 'post'; //V20 comentada
+
+        //$this->_view->assign('paises', $ajaxModel->getPaises());
+        //$this->_view->assign('posts', $paginador->paginar($this->_post->getPrueba(),$pagina));
+        $this->_view->assign('posts', $paginador->paginar($this->_post->getPrueba()));
+        $this->_view->assign('paginacion', $paginador->getView('paginacion_ajax','post/prueba'));
+        $this->_view->assign('titulo', 'Post');
+
+
+        $this->_view->renderizar('prueba', 'post'); //V20 con layout
+		//$this->_view->renderizar('prueba', 'post', true); //V20 sin layout
+    }
+
+    public function pruebaAjax()
+    {
+        //V20
+        //Este método va a traer la paginación.
+        //Trabaja con prueba2
+        $pagina = $this->getInt('pagina');
+        $nombre = $this->getSql('nombre');
+        $pais = $this->getInt('pais');
+        $ciudad = $this->getInt('ciudad');
+        $registros = $this->getInt('registros');
+        $condicion = '';
+        if($nombre){
+            $condicion .= " AND nombre like '%$nombre%' ";
+        }
+        if($pais){
+            $condicion .= " AND id_pais = '$pais' ";
+        }
+        if($ciudad){
+            $condicion .= " AND id_ciudad = '$ciudad' ";
+        }
+        $this->getLibrary('paginador','paginador');
+        $paginador = new Paginador();
+        $this->_view->setJs(array('prueba_ajax'));
+        //solo para smarty va a funcionar
+        $this->_view->assign('posts', $paginador->paginar($this->_post->getPrueba($condicion), $pagina, $registros));
+        $this->_view->assign('paginacion', $paginador->getView('paginacion_ajax'));
+        $this->_view->renderizar('ajax/prueba', false, true);
+        //se crea vista para demas registros para eso se crea carpeta ajax y colocar archivo de smarty.
     }
 }

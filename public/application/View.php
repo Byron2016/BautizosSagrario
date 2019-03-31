@@ -9,12 +9,13 @@ require_once ROOT . DS . 'libs' . DS . 'smarty'. DS . 'libs' . DS . 'Smarty.clas
 
 class View extends Smarty
 {
-    //V15 - V19
+    //V15 - V19 - V20
     //private $_controlador; //V19 comentado
     private $_request; //V19
     private $_js;
     private $_acl; //V15
     private $_rutas; //V19
+    private $_jsPlugin; //V20 para cargar plugins que esten ubicados en public/js
 
 	public function __construct(Request $peticion, ACL $_acl) //V15 aumenta , ACL $_acl
 	{
@@ -26,6 +27,7 @@ class View extends Smarty
         $this->_js = array();
         $this->_acl = $_acl; //V15
         $this->_rutas = array(); //V19
+        $this->_jsPlugin = array(); //V20
 
         $modulo = $this->_request->getModulo();//V19
         $controlador = $this->_request->getControlador();//V19
@@ -43,9 +45,9 @@ class View extends Smarty
 
 
 	}
-    public function renderizar($vista, $item = false)
+    public function renderizar($vista, $item = false, $noLayout = false)
     {
-        //ant - V13 - V19
+        //ant - V13 - V19 - V20
         //echo 'View renderizar ' . '<br>';
         $this->template_dir = ROOT . 'views' . DS . 'layout' . DS . DEFAULT_LAYOUT .DS; //V13
 		$this->config_dir = ROOT . 'views' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'configs' . DS ; //V13
@@ -78,6 +80,7 @@ class View extends Smarty
             'menu' => $menu,
             'item' => $item, //V13
             'js' => $this->_js,
+            'js_plugin' => $this->_jsPlugin, //V20
             'root' => BASE_URL, //V13
             'configs' => array( //V13
                 'app_name' =>APP_NAME,
@@ -99,6 +102,12 @@ class View extends Smarty
         */
         //V19
         if(is_readable($this->_rutas['view'] . $vista . '.tpl')){
+            if($noLayout){
+                //V20 para llamar la vista sin presencia de layout
+                $this->template_dir = $this->_rutas['view'];
+                $this->display( $this->_rutas['view'] . $vista . '.tpl');
+                exit;
+            }
             //V19
             $this->assign('_contenido' , $this->_rutas['view'] . $vista . '.tpl'); //V19
         } else {
@@ -131,6 +140,22 @@ class View extends Smarty
             //var_dump($this->_js);
         } else{
             throw new Exception('Error application View: SetJS Error de js'); 
+        }
+    }
+
+	public function setJsPlugin(array $js) 
+    {
+        //V20
+    	//para enviar js que deseamos incluir en una vista
+        if(is_array($js) && count($js))
+        {
+            for ($i=0; $i < count($js); $i++)
+            {
+                $this->_jsPlugin[] = BASE_URL . 'public/js/' .  $js[$i] . '.js';
+                
+            }
+        } else{
+            throw new Exception('Error View: SetJS Error de js plugin'); 
         }
     }
 
