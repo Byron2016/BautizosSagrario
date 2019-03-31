@@ -194,3 +194,26 @@ order by r.role;
 
 select r.role, p.permiso, pr.valor from roles r, permisos p, permisos_role pr where r.id_role = pr.role and p.id_permiso = pr.permiso order by r.role;
 
+Video 21
+alter table `ba_sag_2019`.`prueba` add id_pais int;
+alter table `ba_sag_2019`.`prueba` add id_ciudad int;
+
+CREATE TABLE `ba_sag_2019`.`prueba` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `id_pais` int(11) DEFAULT NULL,
+  `id_ciudad` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=601 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+select * from `ba_sag_2019`.`prueba`;
+update `ba_sag_2019`.`prueba` set `id_pais` = 1, `id_ciudad`=1  where `id` between 1 and 75;
+update `ba_sag_2019`.`prueba` set `id_pais` = 1, `id_ciudad`=3  where `id` between 76 and 150;
+update `ba_sag_2019`.`prueba` set `id_pais` = 2, `id_ciudad`=2  where `id` between 151 and 225;
+update `ba_sag_2019`.`prueba` set `id_pais` = 2, `id_ciudad`=4  where `id` > 225;
+
+select r.*, p.pais, c.ciudad from prueba r, paises p, ciudades c where r.id_pais = p.id and r.id_ciudad = c.id;
+
+insert into `ba_sag_2019`.`prueba` values (null, 'nombre300', 3, 5);
+insert into `ba_sag_2019`.`prueba` values (null, 'nombre301', 3, 5);
+insert into `ba_sag_2019`.`prueba` values (null, 'nombre301', 3, 10);

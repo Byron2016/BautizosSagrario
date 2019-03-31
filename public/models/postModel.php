@@ -64,11 +64,21 @@ class postModel extends Model
                         ));
     }
 
-    public function getPrueba()
+
+    public function getPrueba($condicion = '')
     {
+        //ant - V21
+        //Comentado en V21
+        /*
         $post = $this->_db->query("select * from prueba");
         return $post->fetchAll();
+        */
+        
+        $post = $this->_db->query("select r.*, p.pais, c.ciudad from prueba r, paises p, ciudades c where r.id_pais = p.id and r.id_ciudad = c.id $condicion order by id asc"); //V21
+        return $post->fetchAll(); //V21
     }
+
+
     
 }
 ?>

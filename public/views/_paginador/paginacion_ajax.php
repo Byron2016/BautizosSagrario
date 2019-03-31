@@ -1,5 +1,5 @@
 <h6>Vista _paginacion ajax</h6>
-<?php //V20 ?>
+<?php //V20 - V21 ?>
 <?php if(isset($this->_paginacion)): ?>
 <div class="pagination" style="text-align: center;">
 	<ul>
@@ -42,10 +42,23 @@
 			<!– &nbsp; –>
 		
 			<?php if(isset($this->_paginacion['ultimo'])): ?>
-				<li><a class='pagina' pagina ="<?php echo $this->_paginacion['ultimo']; ?>" href="javascript:void(0);">&gt;</a></li>
+				<li><a class='pagina' pagina ="<?php echo $this->_paginacion['ultimo']; ?>" href="javascript:void(0);">&Gt;</a></li>
 			<?php else: ?>
 				<li class="disabled"><span>&Gt;</span></li>
 			<?php endif; ?>
 	</ul>
 </div>
+	<div style="text-align: center">
+		<p>
+			<small>Pagina <?php echo $this->_paginacion['actual']; ?> de <?php echo $this->_paginacion['total']; ?>
+				<br>
+				Registros por página:
+				<select id="registros" class='span1'>
+					<?php for($i = 10; $i <= 100; $i += 5): ?>
+						<option value='<?php echo $i; ?>' <?php if($i == $this->_paginacion['limite']){echo "selected = 'selected'";} ?>><?php echo $i; ?></option>
+					<?php endfor; ?>
+				</select>
+			</small>
+		</p>
+	</div>
 <?php endif; ?>

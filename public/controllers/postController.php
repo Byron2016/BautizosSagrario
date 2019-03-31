@@ -194,7 +194,7 @@ class postController extends Controller
 
     public function prueba($pagina = false)
     {
-        //V12 - V20
+        //V12 - V20 - V21
         /*
         for($i =0; $i <300; $i++){
             $model = $this->loadModel('post');
@@ -211,7 +211,11 @@ class postController extends Controller
         */
         $this->getLibrary('paginador','paginador');
         $paginador = new Paginador();
+        $ajaxModel = $this->loadModel('ajax');
         $this->_view->setJs(array('prueba_ajax'));
+        echo 'prueba ajax';
+        $this->_view->assign('paises', $ajaxModel->getPaises());
+        //var_dump($ajaxModel->getPaises()); exit;
         
         //$this->_view->posts = $paginador->paginar($this->_post->getPrueba(), $pagina); //V12 //V20 comentada
         //$this->_view->paginacion = $paginador->getView('prueba', 'post/prueba'); //V12 llama a la paginacion relacionada con la vista //V20 comentada
@@ -225,20 +229,21 @@ class postController extends Controller
 
 
         $this->_view->renderizar('prueba', 'post'); //V20 con layout
-		//$this->_view->renderizar('prueba', 'post', true); //V20 sin layout
+        //$this->_view->renderizar('prueba', 'post', true); //V20 sin layout
+
     }
 
     public function pruebaAjax()
     {
-        //V20
+        //V20 - V21
         //Este método va a traer la paginación.
         //Trabaja con prueba2
         $pagina = $this->getInt('pagina');
-        $nombre = $this->getSql('nombre');
-        $pais = $this->getInt('pais');
-        $ciudad = $this->getInt('ciudad');
-        $registros = $this->getInt('registros');
-        $condicion = '';
+        $nombre = $this->getSql('nombre'); //V21
+        $pais = $this->getInt('pais'); //V21
+        $ciudad = $this->getInt('ciudad'); //V21
+        $registros = $this->getInt('registros'); //V21
+        $condicion = ''; //V21
         if($nombre){
             $condicion .= " AND nombre like '%$nombre%' ";
         }
@@ -250,11 +255,18 @@ class postController extends Controller
         }
         $this->getLibrary('paginador','paginador');
         $paginador = new Paginador();
+        $ajaxModel = $this->loadModel('ajax');
         $this->_view->setJs(array('prueba_ajax'));
         //solo para smarty va a funcionar
+        //echo 'prueba ajax';
+        $this->_view->assign('paises', $ajaxModel->getPaises());
+        //var_dump($ajaxModel->getPaises()); exit;
+        //exit;
+
         $this->_view->assign('posts', $paginador->paginar($this->_post->getPrueba($condicion), $pagina, $registros));
         $this->_view->assign('paginacion', $paginador->getView('paginacion_ajax'));
         $this->_view->renderizar('ajax/prueba', false, true);
         //se crea vista para demas registros para eso se crea carpeta ajax y colocar archivo de smarty.
+        
     }
 }

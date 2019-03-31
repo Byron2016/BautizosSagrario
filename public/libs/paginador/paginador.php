@@ -1,5 +1,5 @@
 <?php
-//V12
+//V12 - V21
 class Paginador 
 {
 	//private $_registry; //22
@@ -37,7 +37,7 @@ class Paginador
 		$paginacion = array();
 		$paginacion['actual'] = $pagina;
 		$paginacion['total'] = $total;
-		$paginacion['limite'] = $limite;
+		$paginacion['limite'] = $limite; //V21
 		if($pagina > 1){
 			$paginacion['primero'] = 1;
 			$paginacion['anterior'] = $pagina - 1;

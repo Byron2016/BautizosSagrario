@@ -10,7 +10,8 @@ class ajaxModel extends Model
     public function getPaises()
     {
         //V14
-    	$paises = $this->_db->query("select * from paises");
+        $paises = $this->_db->query("select * from paises");
+        //var_dump($paises->fetchall()); exit;
     	return $paises->fetchall();
     }
     public function getCiudades($pais)
