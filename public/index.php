@@ -10,9 +10,26 @@ var_dump(filter_var('bob@example.com', FILTER_VALIDATE_EMAIL));
 var_dump(filter_var('bgva2005@yahoo.com', FILTER_VALIDATE_EMAIL));
 exit;
 */
+/*
+//V23 __autoload deprecated, usar spl_autoload_register
+function __autoload($class){ 
+	include APP_PATH . $class . '.php';
+}
+*/
 try {
-	require_once APP_PATH . 'Acl.php'; //V15
+	/*
+spl_autoload_register(function ($class) {
+	//V23
+	echo "llamando a la clase: " . ucfirst(strtolower($class)) . "<br>";
+    include APP_PATH . ucfirst(strtolower($class)) . '.php';
+});
+*/
+	require_once APP_PATH . 'Autoload.php'; //V23
 	require_once APP_PATH . 'Config.php';
+	/*
+	//comentado en V23
+	require_once APP_PATH . 'Acl.php'; //V15
+	
 	require_once APP_PATH . 'Request.php';
 	require_once APP_PATH . 'Bootstrap.php';
 	require_once APP_PATH . 'Controller.php';
@@ -22,6 +39,7 @@ try {
 	require_once APP_PATH . 'Session.php'; //V7
 	require_once APP_PATH . 'Hash.php'; //V10
 	require_once APP_PATH . 'Registry.php'; //V22
+	*/
 
 	
 	
@@ -42,6 +60,12 @@ try {
 	// echo Hash::getHash('md5','tete',HASH_KEY); //V10
 	// echo Hash::getHash('sha1','tete',HASH_KEY); //V10
 	Session::init(); //V7
+	$registry = Registry::getInstancia(); //V22
+	$registry->_request = new Request(); //V22
+	$registry->_db = new Database(DB_HOST, DB_NAME, DB_PORT, DB_USER, DB_PASS, DB_CHAR); //V22
+	$registry->_aclR = new ACL(); //V22
+	$registry->_db2 = new Database(DB_HOST, DB_NAME, DB_PORT, DB_USER, DB_PASS, DB_CHAR); //V22
+
     //echo "index.php antes Bootstrap "  . '<br>'; 
 	//Bootstrap::run(new Request); //Comentado en V22
 	Bootstrap::run($registry->_request); //V22

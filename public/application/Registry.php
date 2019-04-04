@@ -34,7 +34,8 @@ Class Registry
 		return false;
 	}
 }
-
+/*
+//comentado en V23
 $registry = Registry::getInstancia(); //V22
 $registry->_request = new Request(); //V22
 //$registry->_db = new Database(); //V22
@@ -42,3 +43,4 @@ $registry->_db = new Database(DB_HOST, DB_NAME, DB_PORT, DB_USER, DB_PASS, DB_CH
 $registry->_aclR = new ACL(); //V22
 //PARA CREAR CONEXION A NUEVA BASE DE DATOS
 $registry->_db2 = new Database(DB_HOST, DB_NAME, DB_PORT, DB_USER, DB_PASS, DB_CHAR); //V22
+*/
