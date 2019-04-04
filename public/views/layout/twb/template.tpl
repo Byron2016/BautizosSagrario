@@ -92,7 +92,7 @@
                 {/if}
                 {include file=$_contenido}
             </div>
-            
+            {*
  
             <div class="span3">
                 {if $incluir_widget}
@@ -103,6 +103,7 @@
                     {/if}
 
                 {else}
+                
                     {if isset($_layoutParams.menu_right)}
                         <ul class="nav nav-tabs nav-stacked">
                             {foreach item=it from=$_layoutParams.menu_right}
@@ -117,8 +118,10 @@
                            
                         </ul>
                     {/if}
+                   
                 {/if}
             </div> 
+             *}
         </div>
         
         <!-- Footer -->

@@ -1,8 +1,10 @@
 <?php 
-//V15
+//V15 - V22
 class ACL 
 {
 	//private $_registry; //2
+	
+    private $_registry; //V22
 	private $_db;
 	private $_id;
 	private $_role;
@@ -10,7 +12,7 @@ class ACL
 	
 	public function __construct($id = false)
 	{
-        //V15
+        //V15 - V22
 		//echo $id . '<br>';
 		//echo 'ACL constructor  ' . '<br>';
 		if($id)
@@ -28,7 +30,9 @@ class ACL
 		}
 		//$this->_registry = Registry::getInstancia(); //22
 		//$this->_db = $this->_registry->_db; //22
-		$this->_db = new DataBase(); //22 //echo "en 1"  . '<br>';
+		//$this->_db = new DataBase(); //comentado en V22 //22 //echo "en 1"  . '<br>';
+		$this->_registry = Registry::getInstancia(); //V22
+		$this->_db = $this->_registry->_db;  //V22
 		$this->_role = $this->getRole(); //echo "en 2"  . '<br>';
 		$this->_permisos = $this->getPermisosRole(); //echo "en 3"  . '<br>';
 		//echo $this->_id;

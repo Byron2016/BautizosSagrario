@@ -2,27 +2,27 @@
 
 //antes y V9
 
- 		$menu = array(
-			array(
-				'id' => 'inicio',
-				'titulo' => 'Inicio',
-				'enlace' => BASE_URL,
-				'imagen' => 'icon-home'
-			),
-			array(
-				'id' => 'hola',
-				'titulo' => 'Hola',
-				'enlace' => BASE_URL . 'hola',
-				'imagen' => 'icon-home'
-			),
-			array(
-				'id' => 'post',
-				'titulo' => 'Post',
-				'enlace' => BASE_URL . 'post',
-				'imagen' => 'icon-flag'
+$menu = array(
+    array(
+		'id' => 'inicio',
+		'titulo' => 'Inicio',
+		'enlace' => BASE_URL,
+		'imagen' => 'icon-home'
+	),
+	array(
+		'id' => 'hola',
+		'titulo' => 'Hola',
+		'enlace' => BASE_URL . 'hola',
+		'imagen' => 'icon-home'
+	),
+	array(
+		'id' => 'post',
+		'titulo' => 'Post',
+		'enlace' => BASE_URL . 'post',
+		'imagen' => 'icon-flag'
 			)
-        );
-        
+);
+
         if(Session::get('autenticado')){
             $menu[] = array(
                 'id' => 'login',
@@ -48,6 +48,7 @@
         };
 
 
+/*
 $menuRight = array(
 			array(
 				'id' => 'usuarios',
@@ -92,4 +93,5 @@ $menuRight = array(
             );
             
         };
+*/
         

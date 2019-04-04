@@ -56,9 +56,9 @@ class View extends Smarty
 
         // $rutaView = ROOT . 'views' . DS . $this->_controlador . DS . $vista . '.tpl'; //V19 Comentado
         //echo $rutaView;
-
+        //echo APP_PATH . 'Menu.php';
         require_once APP_PATH . 'Menu.php';
-
+        
         $js = array();
         if(count($this->_js)){
             $js = $this->_js;
@@ -72,7 +72,6 @@ class View extends Smarty
             'js' => $this->_js,
         );
         */
-
         $_params = array(
             'ruta_css' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/css/',
             'ruta_img' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/img/',
@@ -115,12 +114,14 @@ class View extends Smarty
             throw new Exception ('Error application View: Error de vista');
         }
 
-
         $this->assign('_acl', $this->_acl); //V15
 
         $this->assign('_layoutParams', $_params); //V13
         //echo 'View renderizar antes display template ' . '<br>';
+        //var_dump($_params); //exit;
+        //echo "antes display";
         $this->display('template.tpl'); //V13
+        //echo "luego display";
 
         
     }

@@ -18,10 +18,10 @@ try {
 	require_once APP_PATH . 'Controller.php';
 	require_once APP_PATH . 'Model.php';
 	require_once APP_PATH . 'View.php';
-	require_once APP_PATH . 'Register.php';
 	require_once APP_PATH . 'DataBase.php';
 	require_once APP_PATH . 'Session.php'; //V7
 	require_once APP_PATH . 'Hash.php'; //V10
+	require_once APP_PATH . 'Registry.php'; //V22
 
 	
 	
@@ -43,7 +43,8 @@ try {
 	// echo Hash::getHash('sha1','tete',HASH_KEY); //V10
 	Session::init(); //V7
     //echo "index.php antes Bootstrap "  . '<br>'; 
-	Bootstrap::run(new Request);
+	//Bootstrap::run(new Request); //Comentado en V22
+	Bootstrap::run($registry->_request); //V22
 	//echo "index.php despues Bootstrap "  . '<br>'; 
 
 } catch(Exception $e) {

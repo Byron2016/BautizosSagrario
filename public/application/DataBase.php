@@ -3,6 +3,8 @@ class DataBase extends  PDO
 {
         
         //Antes hacer cambio para más de una base de datos //22
+        /*
+        //comentado en V22
 	public function __construct()
 	{
                 $var = 'mysql:host=' . DB_HOST . 
@@ -20,9 +22,9 @@ class DataBase extends  PDO
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DB_CHAR 
                 ));
         
-	}
-        
-/*
+        }
+        */
+
         public function __construct($host, $dbname,  $port, $user, $pass, $char)
         {
         parent::__construct(
@@ -36,5 +38,4 @@ class DataBase extends  PDO
                 ));
         
         }
-*/
 } 

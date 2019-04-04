@@ -5,15 +5,20 @@ use PHPMailer\PHPMailer\PHPMailer; //V11
 */
 abstract class Controller
 {
-    //anteriores - V9 - V10 - V15 - V19
+    //anteriores - V9 - V10 - V15 - V19 - V22
+    private $_registry; //V22
     protected $_view;
     protected $_acl; //V15
     protected $_request; //V18
     
 	public function __construct()
 	{
-        $this->_acl = new ACL(); //V15
-        $this->_request = new Request();  //V15
+        //ant - V22
+        $this->_registry = Registry::getInstancia(); //V22
+        //$this->_acl = new ACL(); //V15 //comentado en V22
+        $this->_acl = $this->_registry->_aclR;  //V22
+        // $this->_request = new Request();  //V15 //comentado en V22
+        $this->_request = $this->_registry->_request;  //V22
         //$this->_view = new View(new Request); //comentado en V15
         //echo 'constructor Controller ' . '<br>';
         $this->_view = new View($this->_request, $this->_acl); //V15
