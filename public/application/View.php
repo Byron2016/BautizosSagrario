@@ -1,5 +1,5 @@
 <?php 
-//ant - V13 - V15
+//ant - V13 - V15 - V19 - V20 - V24
 /*
 $ru = ROOT . DS . 'libs' . DS . 'smarty' . DS . 'Smarty.class.php';
 echo $ru;
@@ -9,17 +9,18 @@ require_once ROOT . DS . 'libs' . DS . 'smarty'. DS . 'libs' . DS . 'Smarty.clas
 
 class View extends Smarty
 {
-    //V15 - V19 - V20
+    //V15 - V19 - V20 - V24
     //private $_controlador; //V19 comentado
     private $_request; //V19
     private $_js;
     private $_acl; //V15
     private $_rutas; //V19
     private $_jsPlugin; //V20 para cargar plugins que esten ubicados en public/js
+    private $_template; //V24
 
 	public function __construct(Request $peticion, ACL $_acl) //V15 aumenta , ACL $_acl
 	{
-        //V15
+        //V15 - V24
         //echo 'View constructor ' . '<br>';
         parent::__construct();
         //$this->_controlador = $peticion->getControlador(); //V19 comentado
@@ -28,6 +29,7 @@ class View extends Smarty
         $this->_acl = $_acl; //V15
         $this->_rutas = array(); //V19
         $this->_jsPlugin = array(); //V20
+        $this->_template = DEFAULT_LAYOUT; //V24
 
         $modulo = $this->_request->getModulo();//V19
         $controlador = $this->_request->getControlador();//V19
@@ -49,8 +51,9 @@ class View extends Smarty
     {
         //ant - V13 - V19 - V20
         //echo 'View renderizar ' . '<br>';
-        $this->template_dir = ROOT . 'views' . DS . 'layout' . DS . DEFAULT_LAYOUT .DS; //V13
-		$this->config_dir = ROOT . 'views' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'configs' . DS ; //V13
+        
+        $this->template_dir = ROOT . 'views' . DS . 'layout' . DS . $this->_template .DS; //V13
+		$this->config_dir = ROOT . 'views' . DS . 'layout' . DS . $this->_template . DS . 'configs' . DS ; //V13
 		$this->cache_dir = ROOT . 'tmp' . DS . 'cache' .DS; //V13
 		$this->compile_dir = ROOT . 'tmp' . DS . 'template' .DS; //V13
 
@@ -73,9 +76,9 @@ class View extends Smarty
         );
         */
         $_params = array(
-            'ruta_css' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/css/',
-            'ruta_img' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/img/',
-            'ruta_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/js/',
+            'ruta_css' => BASE_URL . 'views/layout/' . $this->_template . '/css/',
+            'ruta_img' => BASE_URL . 'views/layout/' . $this->_template . '/img/',
+            'ruta_js' => BASE_URL . 'views/layout/' . $this->_template . '/js/',
             'menu' => $menu,
             'item' => $item, //V13
             'js' => $this->_js,
@@ -158,6 +161,41 @@ class View extends Smarty
         } else{
             throw new Exception('Error View: SetJS Error de js plugin'); 
         }
+    }
+
+    public function setTemplate($template)
+    {
+        //V24
+        $this->_template = (string) $template;
+    }
+
+    public function widget($widget, $method, $options = array())
+    {
+        //V24
+        //método q llama al widget
+        //este método actua como un bootstrap para los widgets
+        if(!is_array($options)){
+            $options = array($options); //si no se envia como arreglo, el parametro se convertira en arreglo
+        }
+        //echo ROOT . 'widgets' . DS . $widget . '.php';
+        if(is_readable(ROOT . 'widgets' . DS . $widget . '.php')){
+            include_once ROOT . 'widgets' . DS . $widget . '.php';
+            $widgetClass = $widget . 'Widget';
+            echo $widgetClass . '<br>';
+            if(!class_exists($widgetClass)){
+                throw new Exception('Error View: widget Error clase widget a'); 
+            }
+            if(is_callable($widgetClass, $method)){
+                if(count($options)){
+                    return call_user_func_array(array(new $widgetClass, $method), $options);
+                }
+                else {
+                    return call_user_func(array(new $widgetClass, $method));
+                }
+            }
+            throw new Exception('Error View: widget Error Metodo widget b'); 
+        }
+        throw new Exception('Error View: widget Error de widget c'); 
     }
 
 }

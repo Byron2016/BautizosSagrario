@@ -8,7 +8,7 @@ class indexController extends Controller
     
 	public function index()
 	{
-		//ant - V13
+		//ant - V13 - V24
         //echo "Hola desde index Controler" . "<br>";
         /*
 		$post = $this->loadModel('post');
@@ -24,6 +24,7 @@ class indexController extends Controller
 		//echo "<pre>";print_r($this->_acl->getPermisos()); exit;
 		$this->_view->assign('titulo','Portada') ; //V13
 		//echo "Hola desde index Controler 1" . "<br>";
+		$this->_view->assign('widget',$this->_view->widget('menuW','menuWf')) ; //V24
 		$this->_view->renderizar('index', 'inicio'); //V13
 		//echo "Hola desde index Controler 2" . "<br>";
 		

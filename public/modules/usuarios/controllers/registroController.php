@@ -6,13 +6,14 @@ use PHPMailer\PHPMailer\PHPMailer; //V11
 
 class registroController extends Controller
 {
-	//V10 - V11
+	//V10 - V11 - V24
 	private $_registro;
 	public function __construct()
 	{
-        //V10
+        //V10 - V24
 		parent::__construct();
 		$this->_registro = $this->loadModel('registro');
+		$this->_view->setTemplate('test'); //cambiamos plantilla V24
 	}
 	public function index()
 	{
